@@ -1,0 +1,24 @@
+.rating-stars {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+  }
+  
+  .rating-stars::before {
+    content: "★★★★★";
+    color: #ccc;
+  }
+  
+  .filled-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .filled-stars::before {
+    content: "★★★★★";
+    color: gold;
+  }

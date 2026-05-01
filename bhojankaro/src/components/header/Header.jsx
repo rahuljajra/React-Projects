@@ -1,29 +1,46 @@
+import { useState } from "react";
+import Login from "../login/Login"
+import Register from "../register/Register";
+import logo from "../../assets/bhojankaro-logo.png";
+
 function Header() {
 
-    const handleLogin = () => {
-        
-    }
+    const [showLogin, setShowLogin]  = useState(false);
+    const [showRegister, setShowRegister] = useState(false);
+
     return(
         <>
-          <nav class="sticky top-0 z-50 px-4 py-2 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-            <div class="text-2xl font-bold gradient-text">Bhojan Karo</div>
+        <div className="sticky top-0 z-50 px-4 py-2 bg-white">
+        <nav className="container flex items-center justify-between m-auto">
+            <div className="flex items-center space-x-4">
+            <div className="text-2xl font-bold gradient-text">
+                <img src={logo} alt="logo" width="90" />
             </div>
-            <div class="flex items-center space-x-6">
-            <a href="#" class="p-2 rrounded hover:bg-gray-200 transition duration-200">
+            </div>
+            <div className="flex items-center space-x-6">
+            <a href="#" className="p-2 rrounded hover:bg-gray-200 transition duration-200">
                 Bhojan Corporate
             </a>
-            <a href="#" class="p-2 rounded hover:bg-gray-200 transition duration-200">
+            <a href="#" className="p-2 rounded hover:bg-gray-200 transition duration-200">
                 Partner with us
             </a>
-            <a href="#" class="p-2 rounded hover:bg-gray-200 transition duration-200">
+            <a href="#" className="p-2 rounded hover:bg-gray-200 transition duration-200">
                 Get the App
             </a>
-            <button class="px-8 py-2 rounded text-white bg-black transition duration-200">
+            <button onClick={() => {
+                setShowLogin(true);
+                setShowRegister(false);
+            }} className="px-8 py-2 rounded text-white bg-black transition duration-200 cursor-pointer">
                 Sign in
             </button>
             </div>
-        </nav>
+          </nav>
+        </div>
+        {showLogin && (
+            showRegister ? (<Register setShowRegister={setShowRegister} setShowLogin= {setShowLogin}/>) : (<Login setShowRegister= {setShowRegister} setShowLogin = {setShowLogin} />
+        ))}
+        
+        
         </>
     )
 }

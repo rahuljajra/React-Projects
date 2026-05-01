@@ -42,7 +42,7 @@ function Profile({filteredData}) {
             } else {
                 setDisplaydata(data);
             }
-        })
+        }, [filteredData, data])
 
         if(isLoading) {
             return <h2>Loading...</h2>;
