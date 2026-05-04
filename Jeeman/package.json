@@ -1,0 +1,25 @@
+{
+  "name": "jeeman",
+  "version": "1.0.0",
+  "description": "This is Food ordering Application",
+  "homepage": "https://github.com/rahuljajra/React-Projects#readme",
+  "bugs": {
+    "url": "https://github.com/rahuljajra/React-Projects/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahuljajra/React-Projects.git"
+  },
+  "license": "ISC",
+  "author": "Rahul Jajra",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  }
+}
