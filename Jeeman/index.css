@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-header {
+header, footer {
     background: #ddd;
 }
 
@@ -65,4 +65,7 @@ header {
 }
 .sort-container {
     padding: 15px 0;
+}
+footer h2 {
+    text-align: center;;
 }

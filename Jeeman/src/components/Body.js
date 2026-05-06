@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
 import RestaurantCard from "./RestaurantCard";
+import {Link} from "react-router-dom"
 import Shimmer from "./Shimmer";
+import {RES_LIST} from "./utils/constants";
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -10,10 +12,10 @@ const Body = () => {
     }, [])
 
     const fetchData = async () => {
-        const data = await fetch("https://corsproxy.io/?https://namastedev.com/api/v1/listRestaurants");
+        const data = await fetch(RES_LIST);
         const json = await data.json();
-        setListOfRestaurants(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     if(listOfRestaurants.length === 0) {
@@ -46,7 +48,7 @@ const Body = () => {
                 </div>
             <div className="res_container container">
                 {filteredRestaurants.map((restaurant) => (
-                    <RestaurantCard key={restaurant?.info?.id}  resData={restaurant} />
+                    <Link key={restaurant?.info?.id} to={"/listRestaurantMenu/" + restaurant?.info?.id}><RestaurantCard  resData={restaurant} /></Link>
                 ))}
                 
             </div>

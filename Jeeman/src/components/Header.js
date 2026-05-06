@@ -1,5 +1,6 @@
 import {useState} from "react"
 import {LOGO_URL} from "./utils/constants"
+import {Link} from "react-router-dom"
 
 const Header = () => {
     const [login, setLogin] = useState("Login");
@@ -12,15 +13,15 @@ const Header = () => {
             <div className="container">
                 <div className="header-wrapper">
                     <div className="logo-wrapper">
-                        <img alt="logo" src={LOGO_URL} />
+                        <Link to={"/"}><img alt="logo" src={LOGO_URL} /></Link>
                     </div>
                     <div className="nav-items-wrapper">
                         <nav>
                             <ul>
-                                <li>Home</li>
-                                <li>About</li>
-                                <li>Services</li>
-                                <li>Contact</li>
+                                <li><Link to={"/"}>Home</Link></li>
+                                <li><Link to={"/about"}>About</Link></li>
+                                <li><Link to={"/services"}>Services</Link></li>
+                                <li><Link to={"/contact"}>Contact</Link></li>
                                 <li onClick={handleToggleLogin}>{login}</li>
                             </ul>
                         </nav>
