@@ -13,14 +13,18 @@
   "license": "ISC",
   "author": "Rahul Jajra",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "devDependencies": {
     "parcel": "^2.16.4"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "tailwindcss": "^4.2.4"
   }
 }
