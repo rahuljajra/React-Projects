@@ -2,6 +2,7 @@ import {useEffect, useState}  from "react";
 import {RES_MENU}  from "./utils/constants";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
     const [resMenu, setResMenu] = useState(null);
@@ -21,25 +22,25 @@ const RestaurantMenu = () => {
 
     if(resMenu === null) return <Shimmer />
 
-    const {name} = resMenu?.cards[2]?.card?.card?.info
+    const {name, costForTwo, cuisines, avgRating, sla, totalRatingsString} = resMenu?.cards[2]?.card?.card?.info;
+
+    const menuCategories = resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((cat) => cat?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+
+    console.log(menuCategories, "Menu");
 
     return(
-        <div className="container">
-            <h2>{name}</h2>
-            <div className="recommended_wrapper">
-                <div className="recommended-items">
-                    <div className="list-name">
-                        <div></div>
-                        <h2></h2>
-                        <p className="price"></p>
-                        <p className="rating"></p>
-                        <p className="des"></p>
-                    </div>
-                    <div>
-
-                    </div>
+        <div className="container mx-auto my-8">
+            <h2 className="text-2xl font-bold">{name}</h2>
+            <div className="res-menu-banner">
+                <div>
+                    <div className="text-lg flex gap-2"><span>{avgRating} ({totalRatingsString})</span>|<span>{costForTwo}</span></div>
+                    <p className="text-orange-400 text-lg">{cuisines.join(", ")}</p>
+                    <div className="text-lg font-medium">{sla.slaString}</div>
                 </div>
             </div>
+            {menuCategories.map((categories, index) => (
+                <RestaurantCategory key={index} data = {categories.card.card} />
+            ))}
         </div>
     )
 }

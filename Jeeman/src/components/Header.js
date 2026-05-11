@@ -17,7 +17,7 @@ const Header = () => {
             <div className="container m-auto">
                 <div className="header-wrapper flex justify-between items-center">
                     <div className="logo-wrapper">
-                        <Link to={"/"}><img className="w-[90px]" alt="logo" src={LOGO_URL} /></Link>
+                        <Link to={"/"}><LOGO_URL /></Link>
                     </div>
                     <div className="nav-items-wrapper">
                         <nav>

@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {vegCard} from "./RestaurantCard";
 import {Link} from "react-router-dom"
 import Shimmer from "./Shimmer";
 import {RES_LIST} from "./utils/constants";
@@ -8,6 +8,8 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [searchValue, setSearchValue] = useState("");
+    const VegRestroCard = vegCard(RestaurantCard);
+
     useEffect(() => {
         fetchData();
     }, [])
@@ -15,11 +17,12 @@ const Body = () => {
     const fetchData = async () => {
         const data = await fetch(RES_LIST);
         const json = await data.json();
-        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestaurants(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     const onlineStatus = useOnlineStatus();
+    
 
     if(onlineStatus === false) {
         return <h1>You're Offline, Please check your internet connection</h1>
@@ -55,7 +58,13 @@ const Body = () => {
                 </div>
             <div className="res_container container grid grid-cols-4 gap-4 mb-8">
                 {filteredRestaurants.map((restaurant) => (
-                    <Link key={restaurant?.info?.id} to={"/listRestaurantMenu/" + restaurant?.info?.id}><RestaurantCard  resData={restaurant} /></Link>
+                    <Link key={restaurant?.info?.id} to={"/listRestaurantMenu/" + restaurant?.info?.id}>
+                        {restaurant?.info?.veg ? (<VegRestroCard resData={restaurant} /> 
+                    ) : (
+                    <RestaurantCard  resData={restaurant} />
+                    )}
+                        
+                    </Link>
                 ))}
                 
             </div>
