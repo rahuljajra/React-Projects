@@ -27,7 +27,22 @@ const Search = () => {
 
     return(
         <section id="search" className="relative">
-        <input className="rounded-full h-[10.5] w-[320px] px-4 border border-gray-400 cursor-pointer" type="text" onChange={showSearchResult} placeholder="Searh Menu" name="search" />
+            <div className="search-box">
+            <input className="rounded-full py-2 w-[320px] px-4 border border-gray-400 cursor-pointer" type="text" onChange={showSearchResult} placeholder="Searh Menu" name="search" />
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="#dddddd"
+                stroke="currentColor"
+                strokeWidth="2"
+                width="16"
+                height="16"
+                className="absolute right-2.5 top-3"
+            >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            </div>
         <div className="search-result-wrapper absolute to-0% bg-white shadow shadow-amber-100 max-h-100 overflow-auto">
             {searchResult.map((search, index) =>
                 <div key={index} className="search-result grid grid-cols-2 gap-2 items-center cursor-pointer hover:bg-gray-200 mb-4">
