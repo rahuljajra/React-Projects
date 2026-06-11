@@ -33,8 +33,12 @@ const Body = () => {
     }
 
     const handleSearch = () => {
+        const trimmed = searchValue.trim();
+        if(!trimmed) {
+            setFilteredRestaurants(listOfRestaurants);
+        }
         const searchFilteredData = listOfRestaurants.filter((resfilter) => 
-          resfilter.info.name.toLowerCase().includes(searchValue.toLowerCase())  
+          resfilter.info.name.toLowerCase().replace(/\s+/g, " ").includes(trimmed.toLowerCase().replace(/\s+/g, " "))  
         );
         setFilteredRestaurants(searchFilteredData);
     }
@@ -43,9 +47,12 @@ const Body = () => {
         <section className="body-container container m-auto">
             <div className="sort-container flex justify-between py-8">
                 <div className="search-container flex">
-                    <input id="search" type="text" className="search border border-gray-400 rounded w-full px-2.5" placeholder="search" value={searchValue} onChange={(e)=> {
-                        setSearchValue(e.target.value);
-                    }} />
+                    <input id="search" type="text" className="search border border-gray-400 rounded w-full px-2.5"
+                     placeholder="search" 
+                    value={searchValue} 
+                    onChange={(e)=> setSearchValue(e.target.value)}
+                    onKeyDown={(e)=> e.key == "Enter" && handleSearch()}
+                    />
                     <button className="px-8 py-2 text-white bg-orange-400 rounded" onClick={handleSearch}>Search</button>
                 </div>
                 <button className="px-8 py-2 text-white bg-orange-400 rounded" onClick={() => {
